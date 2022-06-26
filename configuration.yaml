@@ -6,7 +6,7 @@ homeassistant:
   auth_providers:
     - type: homeassistant
   customize: !include customize.yaml
-  
+
 #logger:
 #  default: info
 #  logs:
@@ -14,8 +14,8 @@ homeassistant:
 #    homeassistant.components.zha: debug
 #    zigpy: debug
 #    zhaquirks: debug
-  
-sonoff: 
+
+sonoff:
   username: !secret sonoff_username
   password: !secret sonoff_password
   reload: always
@@ -25,7 +25,7 @@ sonoff:
   devices:
     10014f995d:
       name: FR Plugin
-      
+
 
 panel_iframe:
   tautulli:
@@ -33,7 +33,7 @@ panel_iframe:
     icon: mdi:filmstrip
     url: http://192.168.42.200:8181
 
-      
+
 #garbage_collection:
 #  sensors:
 #  - name: "Garbage"
@@ -120,7 +120,7 @@ http:
 number:
   - platform: mqtt
     command_topic: "zwave/familyroom/testnum"
-    
+
 input_number:
   rain_delay_days:
     name: Rain Delay
@@ -131,7 +131,7 @@ input_number:
     mode: slider
     unit_of_measurement: days
 
-influxdb: 
+influxdb:
   host: a0d7b954-influxdb
   port: 8086
   database: homeassistant
@@ -140,7 +140,7 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-amcrest: 
+amcrest:
   - host: 192.168.42.221
     username: !secret amcrest_user
     password: !secret amcrest_pw
@@ -173,7 +173,7 @@ sensor:
     headers:
       Authorization: !secret meater_token
     value_template: "OK"
-    
+
   - platform: command_line
     command: "/share/genYardSchedule.sh"
     name: yard_waste_pickup
@@ -246,9 +246,9 @@ sensor:
         value_template: "{{(states('sensor.attic_repeater_humidity')) | float(0) + 11}}"
         friendly_name: 'Attic_repeater: Corrected Humidity'
         unit_of_measurement: '%'
-        
 
-    
+
+
   - platform: systemmonitor
     resources:
     - type: disk_use_percent
@@ -273,25 +273,25 @@ sensor:
     sensors:
 
 
-          
+
 #      ha_uptime:
 #        friendly_name: "Home Assistant uptime2"
 #        value_template: "{{ as_timestamp(now()) - uptime_hass }}"
 
 
-        
+
       ha_uptime:
         friendly_name: 'HA uptime sec'
         value_template: >
           {{ (as_timestamp(now()) - as_timestamp(states('sensor.uptime_hass'))) |int(0) }}
-          
+
       hass_not_recently_restart:
         friendly_name: HASS Not Recently Restarted
         value_template: >
           {% if ((states('sensor.ha_uptime') | int(0)) < 30) %} false
           {% else %} true
           {% endif %}
-    
+
       front_activity_status:
         friendly_name: Front Activity Status
         value_template: >-
@@ -300,7 +300,7 @@ sensor:
           {% else %}
             Closed
           {% endif %}
-          
+
       dryer_time_left:
         friendly_name: Dryer Time Left
         value_template: >-
@@ -309,7 +309,7 @@ sensor:
           {% set minutes = (time // 60 ) % 60 | int(0) %}
           {% set hours = (time // 3600) % 24 %}
           {% if is_state("switch.dryer", "off") %}
-            
+
           {% elif time <= 60 %}
             1 min
           {% else %}
@@ -332,7 +332,7 @@ sensor:
           {% set minutes = (time // 60 ) % 60 | int(0) %}
           {% set hours = (time // 3600) % 24 %}
           {% if is_state("switch.washer", "off") %}
-            
+
           {% elif time <= 60 %}
             1 min
           {% else %}
@@ -345,11 +345,11 @@ sensor:
 #             {{ '{:02}:{:02}'.format(minutes, sec) }}
 #          {% endif %}
 
-    
+
 #  - platform: uptime
 #    name: uptime_hass_upper
 #    scan_interval: 5
-    
+
 # - platform: uptime
 #    name: uptime_hass_min
 #    unit_of_measurement: minutes
@@ -367,17 +367,17 @@ template:
         state_class: total_increasing
         unit_of_measurement: m³
         state: "{{(float(states('sensor.gas_meter')) * 0.028317) | round(3)}}"
-        
-      - name: cc_temperature 
+
+      - name: cc_temperature
         state: "{{ state_attr('weather.climacell_daily','temperature') }}"
         unit_of_measurement: °F
-      - name: cc_humidity 
+      - name: cc_humidity
         state: "{{ state_attr('weather.climacell_daily','humidity') }}"
 
-      - name: cc_pressure 
+      - name: cc_pressure
         state: "{{ state_attr('weather.climacell_daily','pressure') }}"
-        unit_of_measurement: Hg        
- 
+        unit_of_measurement: Hg
+
       - name: cc_current_conditions
         state: "{{ states.weather.climacell_daily.state }}"
 
@@ -386,9 +386,9 @@ template:
       - name: cc_visibility
         state: "{{ state_attr('weather.climacell_daily','visibility') }}"
 
-      - name: cc_wind_bearing 
+      - name: cc_wind_bearing
         state: "{{ state_attr('weather.climacell_daily','wind_bearing') }}"
-     
+
       - name: cc_wind_speed
         state: "{{ state_attr('weather.climacell_daily','wind_speed') }}"
 
@@ -421,13 +421,13 @@ template:
       - name: cc_temperature_maximum_4d
         state: "{{ state_attr('weather.climacell_daily','forecast')[4].temperature }}"
         unit_of_measurement: °F
-        
+
       - name: cc_temperature_minimum_0d
         state: "{{ state_attr('weather.climacell_daily','forecast')[0].templow }}"
         unit_of_measurement: °F
       - name: cc_temperature_minimum_1d
         state: "{{ state_attr('weather.climacell_daily','forecast')[1].templow }}"
-        unit_of_measurement: °F        
+        unit_of_measurement: °F
       - name: cc_temperature_minimum_2d
         state: "{{ state_attr('weather.climacell_daily','forecast')[2].templow }}"
         unit_of_measurement: °F
@@ -478,10 +478,10 @@ camera:
     still_image_url: 'http://192.168.42.200:3333/api/hassio_ingress/PnOoPd-EGJsT0_BXScfBmgolZXF1OlbZ0JfIgcVsSsg/render/d-solo/6Ybm2c47k/temps?orgId=1&panelId=2&width=400&height=300&tz=America%2FNew_York'
     username: !secret grafana_user
     password: !secret grafana_pass
-    
+
 hacs:
   token: !secret hacs_token
-  
+
 map:
 
 stream:
@@ -553,8 +553,8 @@ cover:
         stop_cover:
           service: switch.toggle
           entity_id: switch.multirelay_channel3
-    
-    
+
+
 rainbird:
   host: 192.168.42.13
   password: !secret rainbird_pw

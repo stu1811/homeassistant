@@ -126,7 +126,7 @@ sensor:
     pin: D0
     model: DHT11
     temperature:
-      name: "Temperature"
+      name: "Rack Fan Temperature"
       id: rack_fan_temperature
       accuracy_decimals: 3
       on_value_range:
@@ -172,7 +172,7 @@ sensor:
                   level: 0%
 
     humidity:
-      name: "Humidity"
+      name: "Rack Fan Humidity"
       id: rack_fan_humidity
 
     # the DHT11 can only be read every 1s. Use 1.3s to be safe.
