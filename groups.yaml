@@ -1,0 +1,32 @@
+front_outside_lights:
+  name: Front Outside Lights
+  entities:
+   - switch.driveway_light
+   - switch.front_door_outside
+security_front_outside_lights:
+  name: Security Front Outside Lights
+  entities:
+   - switch.formal_outside
+   - switch.garage_security_light
+
+all_front_outside_lights:
+  name: All Front Outside Lights
+  entities:
+   - switch.formal_outside
+   - switch.garage_security_light
+   - switch.driveway_light
+   - switch.front_door_outside
+   
+bottom_stairs:
+  name: Bottom Stairs
+  entities:
+   - light.bottom_stairs
+   - light.bottom_stairs_secondary
+
+front_activity_status:
+  name: Front Activity Status
+  entities:
+   - binary_sensor.front_door_sensor_access_control_window_door_is_open
+   - binary_sensor.formal_front_door_sensor_access_control_window_door_is_open
+   - binary_sensor.driveway_motion_home_security_motion_detection
+

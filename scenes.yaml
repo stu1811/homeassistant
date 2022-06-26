@@ -1,0 +1,1371 @@
+- id: '1620525474675'
+  name: Goodnight
+  entities:
+    light.dining_room:
+      supported_color_modes:
+      - brightness
+      friendly_name: Dining Room
+      supported_features: 32
+      state: 'off'
+    light.light_strip:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Light Strip
+      supported_features: 32
+      state: 'off'
+    light.kitchen_table:
+      supported_color_modes:
+      - brightness
+      friendly_name: Kitchen Table
+      supported_features: 32
+      state: 'off'
+    switch.kitchen:
+      friendly_name: Kitchen
+      state: 'off'
+    switch.kitchen_secondary:
+      friendly_name: Kitchen Secondary
+      state: 'off'
+    light.bottom_stairs:
+      supported_color_modes:
+      - brightness
+      friendly_name: Bottom Stairs
+      supported_features: 32
+      state: 'off'
+    switch.grill_light:
+      friendly_name: Grill Light
+      state: 'off'
+    switch.garage_rear_light:
+      friendly_name: Garage Rear Light
+      state: 'off'
+    light.bottom_stairs_secondary:
+      supported_color_modes:
+      - brightness
+      friendly_name: Bottom Stairs Secondary
+      supported_features: 32
+      state: 'off'
+    switch.front_entrance:
+      friendly_name: Front Entrance
+      state: 'off'
+    switch.front_door_outside:
+      friendly_name: Front Door Outside
+      state: 'off'
+    select.front_door_outside_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Front Door Outside: Local protection state'
+      state: unknown
+    select.front_door_outside_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Front Door Outside: RF protection state'
+      state: unknown
+    switch.garage_security_light:
+      friendly_name: Garage Security Light
+      state: 'off'
+    switch.driveway_light:
+      friendly_name: Driveway Light
+      state: 'off'
+    select.driveway_light_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Driveway Light: Local protection state'
+      state: unknown
+    select.driveway_light_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Driveway Light: RF protection state'
+      state: unknown
+    switch.formal_outside:
+      friendly_name: Formal Outside
+      state: 'off'
+    select.formal_outside_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Formal Outside: Local protection state'
+      state: unknown
+    switch.patio_lights:
+      friendly_name: Patio Lights
+      state: 'off'
+    select.red_series_on_off_switch_local_protection_state_2:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Formal Primary: Local protection state'
+      state: unknown
+    select.red_series_on_off_switch_rf_protection_state_2:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Formal Primary: RF protection state'
+      state: unknown
+    switch.formal_primary:
+      friendly_name: Formal Primary
+      state: 'off'
+    switch.living_room:
+      voltage: 0
+      weekly_energy_total: 0.0637
+      monthly_energy_total: 0.2888
+      yearly_energy_total: 3.0152
+      friendly_name: Living room
+      state: 'off'
+    light.front_hall_light:
+      supported_color_modes:
+      - brightness
+      friendly_name: Front Hall Light
+      supported_features: 41
+      state: 'off'
+    number.front_hall_light_dimmingspeedupremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedUpRemote
+      state: unknown
+    number.front_hall_light_dimmingspeeduplocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedUpLocal
+      state: unknown
+    number.front_hall_light_ramprateofftoonremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOffToOnRemote
+      state: unknown
+    number.front_hall_light_ramprateofftoonlocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOffToOnLocal
+      state: unknown
+    number.front_hall_light_dimmingspeeddownremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedDownRemote
+      state: unknown
+    number.front_hall_light_dimmingspeeddownlocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedDownLocal
+      state: unknown
+    number.front_hall_light_ramprateontooffremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOnToOffRemote
+      state: unknown
+    number.front_hall_light_ramprateontoofflocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOnToOffLocal
+      state: unknown
+    number.front_hall_light_minimumlevel:
+      min: 1
+      max: 253
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light minimumLevel
+      state: unknown
+    number.front_hall_light_maximumlevel:
+      min: 2
+      max: 254
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light maximumLevel
+      state: unknown
+    select.front_hall_light_invertswitch:
+      options:
+      - 'Yes'
+      - 'No'
+      friendly_name: Front Hall Light invertSwitch
+      state: unknown
+    number.front_hall_light_autotimeroff:
+      min: 0
+      max: 32767
+      step: 1
+      mode: auto
+      unit_of_measurement: seconds
+      friendly_name: Front Hall Light autoTimerOff
+      state: unknown
+    number.front_hall_light_defaultlevellocal:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLevelLocal
+      state: unknown
+    number.front_hall_light_defaultlevelremote:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLevelRemote
+      state: unknown
+    number.front_hall_light_stateafterpowerrestored:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light stateAfterPowerRestored
+      state: '0'
+    select.front_hall_light_loadlevelindicatortimeout:
+      options:
+      - Stay Off
+      - 1 Second
+      - 2 Seconds
+      - 3 Seconds
+      - 4 Seconds
+      - 5 Seconds
+      - 6 Seconds
+      - 7 Seconds
+      - 8 Seconds
+      - 9 Seconds
+      - 10 Seconds
+      - Stay On
+      friendly_name: Front Hall Light loadLevelIndicatorTimeout
+      state: unknown
+    number.front_hall_light_activepowerreports:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light activePowerReports
+      state: '0'
+    number.front_hall_light_periodicpowerandenergyreports:
+      min: 0
+      max: 32767
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light periodicPowerAndEnergyReports
+      state: unknown
+    number.front_hall_light_activeenergyreports:
+      min: 0
+      max: 32767
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light activeEnergyReports
+      state: unknown
+    select.front_hall_light_switchtype:
+      options:
+      - Single Pole
+      - 3-Way Dumb Switch
+      - 3-Way Aux Switch
+      friendly_name: Front Hall Light switchType
+      state: unknown
+    select.front_hall_light_buttondelay:
+      options:
+      - 0ms
+      - 300ms
+      - 400ms
+      - 500ms
+      - 600ms
+      - 700ms
+      - 800ms
+      - 900ms
+      friendly_name: Front Hall Light buttonDelay
+      state: unknown
+    select.front_hall_light_smartbulbmode:
+      options:
+      - Disabled
+      - Smart Bulb Mode
+      friendly_name: Front Hall Light smartBulbMode
+      state: unknown
+    number.front_hall_light_ledcolorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledColorWhenOn
+      state: '170'
+    number.front_hall_light_ledcolorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledColorWhenOff
+      state: '37'
+    number.front_hall_light_ledintensitywhenon:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledIntensityWhenOn
+      state: '23'
+    number.front_hall_light_ledintensitywhenoff:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledIntensityWhenOff
+      state: '0'
+    select.front_hall_light_localprotection:
+      options:
+      - Disabled
+      - Enabled
+      friendly_name: Front Hall Light localProtection
+      state: unknown
+    select.front_hall_light_outputmode:
+      options:
+      - Dimmer
+      - On/Off
+      friendly_name: Front Hall Light outputMode
+      state: unknown
+    select.front_hall_light_onoffledmode:
+      options:
+      - All
+      - One
+      friendly_name: Front Hall Light onOffLedMode
+      state: unknown
+    select.front_hall_light_firmwareupdateinprogressindicator:
+      options:
+      - Disabled
+      - Enabled
+      friendly_name: Front Hall Light firmwareUpdateInProgressIndicator
+      state: unknown
+    number.front_hall_light_defaultled1colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled1colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled1intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled1intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled2colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled2colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled2intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled2intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled3colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled3colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled3intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled3intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled4colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled4colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled4intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled4intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled5colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled5colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled5intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled5intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled6colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled6colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled6intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled6intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled7colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled7colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled7intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled7intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7IntensityWhenOff
+      state: unknown
+    number.front_hall_light_doubletapupforfullbrightness:
+      min: 0
+      max: 1
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light doubleTapUpForFullBrightness
+      state: unknown
+- id: '1635556673514'
+  name: Stuff 0n
+  entities:
+    light.dining_room:
+      supported_color_modes:
+      - brightness
+      friendly_name: Dining Room
+      supported_features: 32
+      state: 'off'
+    select.dining_room_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Dining Room: Local protection state'
+      state: Unprotected
+    select.dining_room_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Dining Room: RF protection state'
+      state: Unprotected
+    light.kitchen_table:
+      supported_color_modes:
+      - brightness
+      friendly_name: Kitchen Table
+      supported_features: 32
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    select.kitchen_table_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Kitchen Table: Local protection state'
+      state: Unprotected
+    select.kitchen_table_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Kitchen Table: RF protection state'
+      state: Unprotected
+    select.kitchen_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Kitchen: Local protection state'
+      state: unknown
+    select.kitchen_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Kitchen: RF protection state'
+      state: unknown
+    switch.kitchen:
+      friendly_name: Kitchen
+      state: 'on'
+    select.front_entrance_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Front Entrance: Local protection state'
+      state: unknown
+    select.front_entrance_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Front Entrance: RF protection state'
+      state: unknown
+    switch.front_entrance:
+      friendly_name: Front Entrance
+      state: 'on'
+    light.bottom_stairs:
+      supported_color_modes:
+      - brightness
+      friendly_name: Bottom Stairs
+      supported_features: 32
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    select.bottom_stairs_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Bottom Stairs: Local protection state'
+      state: Unprotected
+    select.bottom_stairs_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Bottom Stairs: RF protection state'
+      state: Unprotected
+    light.formal_corner:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Formal Corner
+      supported_features: 32
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 370
+      hs_color:
+      - 28.391
+      - 65.659
+      rgb_color:
+      - 255
+      - 166
+      - 87
+      xy_color:
+      - 0.526
+      - 0.387
+      state: 'on'
+    light.front_hall_light:
+      supported_color_modes:
+      - brightness
+      friendly_name: Front Hall Light
+      supported_features: 41
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    number.front_hall_light_dimmingspeedupremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedUpRemote
+      state: unknown
+    number.front_hall_light_dimmingspeeduplocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedUpLocal
+      state: unknown
+    number.front_hall_light_ramprateofftoonremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOffToOnRemote
+      state: unknown
+    number.front_hall_light_ramprateofftoonlocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOffToOnLocal
+      state: unknown
+    number.front_hall_light_dimmingspeeddownremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedDownRemote
+      state: unknown
+    number.front_hall_light_dimmingspeeddownlocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light dimmingSpeedDownLocal
+      state: unknown
+    number.front_hall_light_ramprateontooffremote:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOnToOffRemote
+      state: unknown
+    number.front_hall_light_ramprateontoofflocal:
+      min: 0
+      max: 127
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light rampRateOnToOffLocal
+      state: unknown
+    number.front_hall_light_minimumlevel:
+      min: 1
+      max: 253
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light minimumLevel
+      state: unknown
+    number.front_hall_light_maximumlevel:
+      min: 2
+      max: 254
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light maximumLevel
+      state: unknown
+    select.front_hall_light_invertswitch:
+      options:
+      - 'Yes'
+      - 'No'
+      friendly_name: Front Hall Light invertSwitch
+      state: unknown
+    number.front_hall_light_autotimeroff:
+      min: 0
+      max: 32767
+      step: 1
+      mode: auto
+      unit_of_measurement: seconds
+      friendly_name: Front Hall Light autoTimerOff
+      state: unknown
+    number.front_hall_light_defaultlevellocal:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLevelLocal
+      state: unknown
+    number.front_hall_light_defaultlevelremote:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLevelRemote
+      state: unknown
+    number.front_hall_light_stateafterpowerrestored:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light stateAfterPowerRestored
+      state: '0'
+    select.front_hall_light_loadlevelindicatortimeout:
+      options:
+      - Stay Off
+      - 1 Second
+      - 2 Seconds
+      - 3 Seconds
+      - 4 Seconds
+      - 5 Seconds
+      - 6 Seconds
+      - 7 Seconds
+      - 8 Seconds
+      - 9 Seconds
+      - 10 Seconds
+      - Stay On
+      friendly_name: Front Hall Light loadLevelIndicatorTimeout
+      state: unknown
+    number.front_hall_light_activepowerreports:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light activePowerReports
+      state: '0'
+    number.front_hall_light_periodicpowerandenergyreports:
+      min: 0
+      max: 32767
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light periodicPowerAndEnergyReports
+      state: unknown
+    number.front_hall_light_activeenergyreports:
+      min: 0
+      max: 32767
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light activeEnergyReports
+      state: unknown
+    select.front_hall_light_switchtype:
+      options:
+      - Single Pole
+      - 3-Way Dumb Switch
+      - 3-Way Aux Switch
+      friendly_name: Front Hall Light switchType
+      state: unknown
+    select.front_hall_light_buttondelay:
+      options:
+      - 0ms
+      - 300ms
+      - 400ms
+      - 500ms
+      - 600ms
+      - 700ms
+      - 800ms
+      - 900ms
+      friendly_name: Front Hall Light buttonDelay
+      state: unknown
+    select.front_hall_light_smartbulbmode:
+      options:
+      - Disabled
+      - Smart Bulb Mode
+      friendly_name: Front Hall Light smartBulbMode
+      state: unknown
+    number.front_hall_light_ledcolorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledColorWhenOn
+      state: '170'
+    number.front_hall_light_ledcolorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledColorWhenOff
+      state: '37'
+    number.front_hall_light_ledintensitywhenon:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledIntensityWhenOn
+      state: '23'
+    number.front_hall_light_ledintensitywhenoff:
+      min: 0
+      max: 100
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light ledIntensityWhenOff
+      state: '0'
+    select.front_hall_light_localprotection:
+      options:
+      - Disabled
+      - Enabled
+      friendly_name: Front Hall Light localProtection
+      state: unknown
+    select.front_hall_light_outputmode:
+      options:
+      - Dimmer
+      - On/Off
+      friendly_name: Front Hall Light outputMode
+      state: unknown
+    select.front_hall_light_onoffledmode:
+      options:
+      - All
+      - One
+      friendly_name: Front Hall Light onOffLedMode
+      state: unknown
+    select.front_hall_light_firmwareupdateinprogressindicator:
+      options:
+      - Disabled
+      - Enabled
+      friendly_name: Front Hall Light firmwareUpdateInProgressIndicator
+      state: unknown
+    number.front_hall_light_defaultled1colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled1colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled1intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled1intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed1IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled2colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled2colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled2intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled2intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed2IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled3colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled3colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled3intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled3intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed3IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled4colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled4colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled4intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled4intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed4IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled5colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled5colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled5intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled5intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed5IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled6colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled6colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled6intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled6intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed6IntensityWhenOff
+      state: unknown
+    number.front_hall_light_defaultled7colorwhenon:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7ColorWhenOn
+      state: unknown
+    number.front_hall_light_defaultled7colorwhenoff:
+      min: 0
+      max: 255
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7ColorWhenOff
+      state: unknown
+    number.front_hall_light_defaultled7intensitywhenon:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7IntensityWhenOn
+      state: unknown
+    number.front_hall_light_defaultled7intensitywhenoff:
+      min: 0
+      max: 101
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light defaultLed7IntensityWhenOff
+      state: unknown
+    number.front_hall_light_doubletapupforfullbrightness:
+      min: 0
+      max: 1
+      step: 1
+      mode: auto
+      friendly_name: Front Hall Light doubleTapUpForFullBrightness
+      state: unknown
+- id: '1642766476592'
+  name: Leave House
+  entities:
+    select.kitchen_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Kitchen: Local protection state'
+      state: unknown
+    select.kitchen_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Kitchen: RF protection state'
+      state: unknown
+    switch.kitchen:
+      friendly_name: Kitchen
+      state: 'off'
+    light.kitchen_table:
+      supported_color_modes:
+      - brightness
+      friendly_name: Kitchen Table
+      supported_features: 32
+      state: 'off'
+    select.kitchen_table_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Kitchen Table: Local protection state'
+      state: Unprotected
+    select.kitchen_table_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Kitchen Table: RF protection state'
+      state: Unprotected
+    light.bottom_stairs:
+      supported_color_modes:
+      - brightness
+      friendly_name: Bottom Stairs
+      supported_features: 32
+      state: 'off'
+    select.bottom_stairs_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Bottom Stairs: Local protection state'
+      state: Unprotected
+    select.bottom_stairs_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Bottom Stairs: RF protection state'
+      state: Unprotected
+    light.bottom_stairs_secondary:
+      supported_color_modes:
+      - brightness
+      friendly_name: Bottom Stairs Secondary
+      supported_features: 32
+      state: 'off'
+    select.bottom_stairs_secondary_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Bottom Stairs Secondary: Local protection state'
+      state: Unprotected
+    select.bottom_stairs_secondary_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Bottom Stairs Secondary: RF protection state'
+      state: Unprotected
+    light.dining_room:
+      supported_color_modes:
+      - brightness
+      friendly_name: Dining Room
+      supported_features: 32
+      state: 'off'
+    select.dining_room_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Dining Room: Local protection state'
+      state: Unprotected
+    select.dining_room_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Dining Room: RF protection state'
+      state: Unprotected
+    light.dining_room_secondary:
+      supported_color_modes:
+      - brightness
+      friendly_name: Dining Room Secondary
+      supported_features: 32
+      state: 'off'
+    select.dining_room_secondary_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Dining Room Secondary: Local protection state'
+      state: Unprotected
+    select.dining_room_secondary_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Dining Room Secondary: RF protection state'
+      state: Unprotected
+    light.light_strip:
+      min_mireds: 153
+      max_mireds: 370
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Light Strip
+      supported_features: 32
+      state: 'off'
+    select.light_strip_local_protection_state:
+      options:
+      - Unprotected
+      - ProtectedBySequence
+      - NoOperationPossible
+      friendly_name: 'Light Strip: Local protection state'
+      state: Unprotected
+    select.light_strip_rf_protection_state:
+      options:
+      - Unprotected
+      - NoControl
+      - NoResponse
+      friendly_name: 'Light Strip: RF protection state'
+      state: Unprotected
+    switch.patio_lights:
+      friendly_name: Patio Lights
+      state: 'off'
+    select.red_series_on_off_switch_local_protection_state_2:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Formal Primary: Local protection state'
+      state: unknown
+    select.red_series_on_off_switch_rf_protection_state_2:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Formal Primary: RF protection state'
+      state: unknown
+    switch.formal_primary:
+      friendly_name: Formal Primary
+      state: 'off'
+    select.red_series_on_off_switch_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Formal Secondary: Local protection state'
+      state: unknown
+    select.red_series_on_off_switch_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Formal Secondary: RF protection state'
+      state: unknown
+    switch.formal_secondary:
+      friendly_name: Formal Secondary
+      state: 'off'
+    select.front_entrance_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Front Entrance: Local protection state'
+      state: unknown
+    select.front_entrance_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Front Entrance: RF protection state'
+      state: unknown
+    switch.front_entrance:
+      friendly_name: Front Entrance
+      state: 'off'
+    select.grill_light_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Grill Light: Local protection state'
+      state: unknown
+    select.grill_light_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Grill Light: RF protection state'
+      state: unknown
+    switch.grill_light:
+      friendly_name: Grill Light
+      state: 'off'
+    select.kitchen_secondary_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Kitchen Secondary: Local protection state'
+      state: unknown
+    select.kitchen_secondary_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Kitchen Secondary: RF protection state'
+      state: unknown
+    switch.kitchen_secondary:
+      friendly_name: Kitchen Secondary
+      state: 'off'
+    select.garage_rear_light_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Garage Rear Light: Local protection state'
+      state: unknown
+    select.garage_rear_light_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Garage Rear Light: RF protection state'
+      state: unknown
+    switch.garage_rear_light:
+      friendly_name: Garage Rear Light
+      state: 'off'
+    switch.office_switch:
+      friendly_name: Office Switch
+      state: 'off'
+    select.office_switch_local_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Office Switch: Local protection state'
+      state: unknown
+    select.office_switch_rf_protection_state:
+      options:
+      - unknown (0x08)
+      - unknown (0x09)
+      - unknown (0x0a)
+      friendly_name: 'Office Switch: RF protection state'
+      state: unknown

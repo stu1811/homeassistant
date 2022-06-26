@@ -1,0 +1,57 @@
+blueprint:
+  name: Import Garbage Collection from txt
+  description: "This automation is triggered from the `garbage_collection` integration\
+    \ by event `garbage_collection_loaded`, during the device state update. \nIt PROCESSES\
+    \ DATA SENT WITH THE EVENT, and then FINISHES THE UPDATE. DO NOT CALL THIS SERVICE\
+    \ MANUALLY, IT WON'T WORK (it won't have the data).\nAlso, make sure the INTEGRATION\
+    \ IS CONFIGURED FOR `manual_update` (that will disable the state update by the\
+    \ integration and pass it to this automation).\n\nIt imports dates from a txt\
+    \ file containing colection dates, one date per line. To read the file, you will\
+    \ need to create a `command_line` sensor reading the file content (see below).\n\
+    \nThe sensors are normally updated once a day, or when Home Assistant starts.\
+    \ The update can be triggered by updating the integration configuration (just\
+    \ hit configure and submit)."
+  domain: automation
+  source_url: https://github.com/bruxy70/Garbage-Collection/blob/master/blueprints/import_txt.yaml
+  input:
+    garbage_collection_entity:
+      name: Garbage Collection Entity
+      description: Triggered by the event for this entity.
+      selector:
+        entity:
+          integration: garbage_collection
+    import:
+      name: Command Line sensor reading the file
+      description: 'To import dates from the file /share/import.txt, create the sensor
+        with `command: "cat /share/import.txt"`. Then, create a `blank` garbage_collection
+        entity configured with `manual_update`, and configure an automation with this
+        blueprint to link the two entities.'
+      selector:
+        entity:
+
+mode: parallel
+trigger:
+- platform: event
+  event_type: garbage_collection_loaded
+  event_data:
+    entity_id: !input 'garbage_collection_entity'
+action:
+- variables:
+    import: !input 'import'
+- alias: Iterate through the lines
+  repeat:
+    count: '{{ states(import).split(''
+
+      '') | count }}'
+    sequence:
+    - alias: Add the date
+      service: garbage_collection.add_date
+      data:
+        entity_id: '{{ trigger.event.data.entity_id }}'
+        date: '{{ states(import).split(''
+
+          '')[repeat.index-1] }}'
+- alias: Update the garbage_collection entity
+  service: garbage_collection.update_state
+  data:
+    entity_id: '{{ trigger.event.data.entity_id }}'

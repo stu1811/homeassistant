@@ -1,0 +1,561 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+homeassistant:
+  auth_providers:
+    - type: homeassistant
+  customize: !include customize.yaml
+  
+#logger:
+#  default: info
+#  logs:
+#    custom_components.garbage_collection: debug
+#    homeassistant.components.zha: debug
+#    zigpy: debug
+#    zhaquirks: debug
+  
+sonoff: 
+  username: !secret sonoff_username
+  password: !secret sonoff_password
+  reload: always
+  force_update: [temperature, power]
+  scan_interval: '00:05:00'  # (optional) default 5 minutes
+  sensors: [temperature, humidity, power, current, voltage]
+  devices:
+    10014f995d:
+      name: FR Plugin
+      
+
+panel_iframe:
+  tautulli:
+    title: Tautulli
+    icon: mdi:filmstrip
+    url: http://192.168.42.200:8181
+
+      
+#garbage_collection:
+#  sensors:
+#  - name: "Garbage"
+#    frequency: "every-n-days"
+#    period: 7
+#    first_date: '2022-01-05'
+#    collection_days:
+#    - wed
+#  - name: "Recycling"
+#    frequency: "every-n-days"
+#    period: 14
+#    first_date: '2022-01-05'
+#    collection_days:
+#    - wed
+
+utility_meter:
+  gas:
+    source: sensor.gas_meter_metric
+    cycle: monthly
+  gas_daily:
+    source: sensor.gas_meter_metric
+    cycle: daily
+  gas_hourly:
+    source: sensor.gas_meter_metric
+    cycle: hourly
+  gas_ft:
+    source: sensor.gas_meter
+    cycle: monthly
+  gas_ft_daily:
+    source: sensor.gas_meter
+    cycle: daily
+  gas_ft_hourly:
+    source: sensor.gas_meter
+    cycle: hourly
+
+  water:
+    source: sensor.water_meter
+    cycle: monthly
+  water_daily:
+    source: sensor.water_meter
+    cycle: daily
+  water_hourly:
+    source: sensor.water_meter
+    cycle: hourly
+
+zha:
+  enable_quirks: true
+  custom_quirks_path: /config/zhacustomquirks
+  zigpy_config:
+    ota:
+      ikea_provider: true                        # Auto update Trådfri devices
+      ledvance_provider: true                    # Auto update LEDVANCE devices
+      otau_directory: /config/zha_ota            # Utilize .ota files to update everything
+    network:
+      channel: 25
+      channels: [25]
+
+
+energy:
+
+frontend:
+  extra_module_url:
+    - /local/community/lovelace-card-mod/card-mod.js
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.42.200
+    - 172.30.33.0/24
+
+
+number:
+  - platform: mqtt
+    command_topic: "zwave/familyroom/testnum"
+    
+input_number:
+  rain_delay_days:
+    name: Rain Delay
+    initial: 0
+    min: 0
+    max: 5
+    step: 1
+    mode: slider
+    unit_of_measurement: days
+
+influxdb: 
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influx_user
+  password: !secret influx_pass
+  max_retries: 3
+  default_measurement: state
+
+amcrest: 
+  - host: 192.168.42.221
+    username: !secret amcrest_user
+    password: !secret amcrest_pw
+
+#sensor:
+#  - platform: zoneminder
+#    include_archived: true
+#    monitored_conditions: hour
+sensor:
+#  - platform: zoneminder
+#    include_archived: true
+#    monitored_conditions: hour:
+#  - platform: mqtt
+#    name: "Gas Meter"
+#    state_topic: rtlamr/1563533180/state
+#  - platform: mqtt
+#    name: "Water Meter"
+#    state_topic: rtlamr/2691258/state
+
+
+  - platform: peloton
+    username: scubastu
+    password: !secret peloton_pass
+
+  - platform: rest
+    name: meater2
+    json_attributes:
+      - data
+    resource: https://public-api.cloud.meater.com/v1/devices/
+    headers:
+      Authorization: !secret meater_token
+    value_template: "OK"
+    
+  - platform: command_line
+    command: "/share/genYardSchedule.sh"
+    name: yard_waste_pickup
+#  - platform: template
+#    sensors:
+#      internal_temperature_1:
+#        friendly_name: Internal Temperature 1
+#        icon_template: mdi:food-steak
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["temperature"]["internal"] }}'
+#      ambient_temperature_1:
+#        friendly_name: Ambient Temperature 1
+#        icon_template: mdi:grill
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["temperature"]["ambient"] }}'
+#      cook_id_1:
+#        friendly_name: Cook ID 1
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["cook"]["id"] }}'
+#      cook_name_1:
+#        friendly_name: Cook Name
+#        icon_template: mdi:chef-hat
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["cook"]["name"] }}'
+#      cook_state_1:
+#        friendly_name: Cook State 1
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["cook"]["state"] }}'
+#      cook_temperature_target_1:
+#        friendly_name: Cook Temperature Target 1
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["cook"]["temperature"]["target"] }}'
+#      cook_temperature_peak_1:
+#        friendly_name: Cook Temperature Peak 1
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["cook"]["temperature"]["peak"] }}'
+#      cook_time_elapsed_1:
+#        friendly_name: Cook Time Elapsed 1
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["cook"]["time"]["elapsed"] }}'
+#      cook_time_remaining_1:
+#        friendly_name: Cook Time Remaining 1
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["cook"]["time"]["remaining"] }}'
+#      updated_at_1:
+#        friendly_name: Last Updated 1
+#        value_template: '{{ states.sensor.meater2.attributes["data"]["devices"][0]["updated_at"] }}'
+
+
+  - platform: template
+    sensors:
+      raid_resync_op:
+        value_template: "{{ state_attr('binary_sensor.raid_status_dev_md0', 'resync_operation') }}"
+        friendly_name: "Operation"
+      raid_resync_progress:
+        value_template: "{{ state_attr('binary_sensor.raid_status_dev_md0', 'resync_percentual_progress') }}"
+        friendly_name: "Progress"
+      raid_resync_time_remaining:
+        value_template: "{{ state_attr('binary_sensor.raid_status_dev_md0', 'resync_remaining_time') }}"
+        friendly_name: "Time Remaining"
+      raid_sync:
+        value_template: "{{ state_attr('binary_sensor.raid_status_dev_md0', 'sync') }}"
+        friendly_name: "Status"
+      raid_resync_speed:
+        value_template: "{{ state_attr('binary_sensor.raid_status_dev_md0', 'resync_speed') }}"
+        friendly_name: "Resync Speed"
+
+      weather_home_humidity:
+        value_template: "{{ state_attr('weather.home', 'humidity') }}"
+        unit_of_measurement: '%'
+      weather_home_pressure:
+        value_template: "{{ state_attr('weather.home', 'pressure') }}"
+      attic_repeater_air_temperature_corrected:
+        value_template: "{{(states('sensor.attic_repeater_air_temperature')) | float(0) - 7}}"
+        friendly_name: 'Attic_repeater: Corrected Temperature'
+        unit_of_measurement: °F
+        device_class: temperature
+      attic_repeater_humidity_corrected:
+        value_template: "{{(states('sensor.attic_repeater_humidity')) | float(0) + 11}}"
+        friendly_name: 'Attic_repeater: Corrected Humidity'
+        unit_of_measurement: '%'
+        
+
+    
+  - platform: systemmonitor
+    resources:
+    - type: disk_use_percent
+      arg: /config
+    - type: disk_use
+      arg: /config
+    - type: disk_free
+      arg: /config
+    - type: disk_use_percent
+      arg: /media/frigate
+    - type: disk_use
+      arg: /media/frigate
+    - type: disk_free
+      arg: /media/frigate
+    - type: memory_free
+    - type: memory_use
+    - type: processor_temperature
+    - type: processor_use
+  - platform: uptime
+    name: uptime_hass
+  - platform: template
+    sensors:
+
+
+          
+#      ha_uptime:
+#        friendly_name: "Home Assistant uptime2"
+#        value_template: "{{ as_timestamp(now()) - uptime_hass }}"
+
+
+        
+      ha_uptime:
+        friendly_name: 'HA uptime sec'
+        value_template: >
+          {{ (as_timestamp(now()) - as_timestamp(states('sensor.uptime_hass'))) |int(0) }}
+          
+      hass_not_recently_restart:
+        friendly_name: HASS Not Recently Restarted
+        value_template: >
+          {% if ((states('sensor.ha_uptime') | int(0)) < 30) %} false
+          {% else %} true
+          {% endif %}
+    
+      front_activity_status:
+        friendly_name: Front Activity Status
+        value_template: >-
+          {% if is_state('group.front_activity_status', 'on') %}
+            Open
+          {% else %}
+            Closed
+          {% endif %}
+          
+      dryer_time_left:
+        friendly_name: Dryer Time Left
+        value_template: >-
+          {% set time= as_timestamp(states('sensor.dryer_dryer_completion_time')) | int(0) - as_timestamp(now()) | int(0) %}
+          {% set sec = (time % 60) | int(0) %}
+          {% set minutes = (time // 60 ) % 60 | int(0) %}
+          {% set hours = (time // 3600) % 24 %}
+          {% if is_state("switch.dryer", "off") %}
+            
+          {% elif time <= 60 %}
+            1 min
+          {% else %}
+           {{minutes}}min
+          {% endif %}
+
+#          {% elif hours > 0 %}
+#             {{ '{:02}:{:02}:{:02}'.format(hours, minutes, sec) }}
+#          {% elif time > 0  %}
+#             {{ '{:02}:{:02}'.format(minutes, sec) }}
+#          {% else %}
+#           {{ '{:02}min'.format(minutes, sec) }}
+#          {% endif %}
+
+      washer_time_left:
+        friendly_name: Washer Time Left
+        value_template: >-
+          {% set time= as_timestamp(states('sensor.washer_washer_completion_time')) |int(0) - as_timestamp(now()) | int(0) %}
+          {% set sec = (time % 60) | int(0) %}
+          {% set minutes = (time // 60 ) % 60 | int(0) %}
+          {% set hours = (time // 3600) % 24 %}
+          {% if is_state("switch.washer", "off") %}
+            
+          {% elif time <= 60 %}
+            1 min
+          {% else %}
+           {{minutes}}min
+          {% endif %}
+
+#          {% elif hours > 0 %}
+#             {{ '{:02}:{:02}:{:02}'.format(hours, minutes, sec) }}
+#          {% elif time > 0  %}
+#             {{ '{:02}:{:02}'.format(minutes, sec) }}
+#          {% endif %}
+
+    
+#  - platform: uptime
+#    name: uptime_hass_upper
+#    scan_interval: 5
+    
+# - platform: uptime
+#    name: uptime_hass_min
+#    unit_of_measurement: minutes
+
+
+template:
+  - sensor:
+      - name: gas_meter_metric2
+        device_class: gas
+        state_class: total_increasing
+        unit_of_measurement: m³
+        state: "{{(float(states('sensor.gas_meter')) * 0.028317) | round(3)}}"
+      - name: gas_meter_metric
+        device_class: gas
+        state_class: total_increasing
+        unit_of_measurement: m³
+        state: "{{(float(states('sensor.gas_meter')) * 0.028317) | round(3)}}"
+        
+      - name: cc_temperature 
+        state: "{{ state_attr('weather.climacell_daily','temperature') }}"
+        unit_of_measurement: °F
+      - name: cc_humidity 
+        state: "{{ state_attr('weather.climacell_daily','humidity') }}"
+
+      - name: cc_pressure 
+        state: "{{ state_attr('weather.climacell_daily','pressure') }}"
+        unit_of_measurement: Hg        
+ 
+      - name: cc_current_conditions
+        state: "{{ states.weather.climacell_daily.state }}"
+
+#        feels_like
+
+      - name: cc_visibility
+        state: "{{ state_attr('weather.climacell_daily','visibility') }}"
+
+      - name: cc_wind_bearing 
+        state: "{{ state_attr('weather.climacell_daily','wind_bearing') }}"
+     
+      - name: cc_wind_speed
+        state: "{{ state_attr('weather.climacell_daily','wind_speed') }}"
+
+      - name: cc_O3
+        state: "{{ state_attr('weather.climacell_daily','ozone') }}"
+
+      - name: cc_weather_condition_0d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[0].condition }}"
+      - name: cc_weather_condition_1d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[1].condition }}"
+      - name: cc_weather_condition_2d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[2].condition }}"
+      - name: cc_weather_condition_3d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[3].condition  }}"
+      - name: cc_weather_condition_4d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[4].condition  }}"
+
+      - name: cc_temperature_maximum_0d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[0].temperature }}"
+        unit_of_measurement: °F
+      - name: cc_temperature_maximum_1d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[1].temperature }}"
+        unit_of_measurement: °F
+      - name: cc_temperature_maximum_2d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[2].temperature }}"
+        unit_of_measurement: °F
+      - name: cc_temperature_maximum_3d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[3].temperature }}"
+        unit_of_measurement: °F
+      - name: cc_temperature_maximum_4d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[4].temperature }}"
+        unit_of_measurement: °F
+        
+      - name: cc_temperature_minimum_0d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[0].templow }}"
+        unit_of_measurement: °F
+      - name: cc_temperature_minimum_1d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[1].templow }}"
+        unit_of_measurement: °F        
+      - name: cc_temperature_minimum_2d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[2].templow }}"
+        unit_of_measurement: °F
+      - name: cc_temperature_minimum_3d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[3].templow }}"
+        unit_of_measurement: °F
+      - name: cc_temperature_minimum_4d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[4].templow }}"
+        unit_of_measurement: °F
+
+      - name: cc_precipitation_intensity_0d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[0].precipitation }}"
+
+      - name: cc_precipitation_probability_0d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[0].precipitation_probability }}"
+
+      - name: cc_precipitation_intensity_1d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[1].precipitation }}"
+
+      - name: cc_precipitation_probability_1d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[1].precipitation_probability }}"
+
+      - name: cc_precipitation_intensity_2d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[2].precipitation }}"
+
+      - name: cc_precipitation_probability_2d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[2].precipitation_probability }}"
+
+      - name: cc_precipitation_intensity_3d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[3].precipitation }}"
+
+      - name: cc_precipitation_probability_3d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[3].precipitation_probability }}"
+
+      - name: cc_precipitation_intensity_4d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[4].precipitation }}"
+
+      - name: cc_precipitation_probability_4d
+        state: "{{ state_attr('weather.climacell_daily','forecast')[4].precipitation_probability }}"
+
+camera:
+#  - platform: zoneminder
+  - platform: generic
+    still_image_url: 'https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?num=6&type=N0Q&mapx=400&mapy=240&brand=horse&delay=15&frame=0&scale=1&transx=0&transy=0&severe=1&smooth=1&centerx=400&centery=240&station=BOX&rainsnow=1&lightning=0&noclutter=1&showlabels=1&showstorms=0&rand=27161183'
+    name: RI Radar
+  - platform: generic
+    name: Grafana_Attic_Temp
+    still_image_url: 'http://192.168.42.200:3333/api/hassio_ingress/PnOoPd-EGJsT0_BXScfBmgolZXF1OlbZ0JfIgcVsSsg/render/d-solo/6Ybm2c47k/temps?orgId=1&panelId=2&width=400&height=300&tz=America%2FNew_York'
+    username: !secret grafana_user
+    password: !secret grafana_pass
+    
+hacs:
+  token: !secret hacs_token
+  
+map:
+
+stream:
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  # "Project ID" in the Device Access Console
+  project_id: !secret nest_project_id
+
+  # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
+  subscriber_id: !secret nest_subscriber_id
+
+
+#ambient_station:
+#  app_key: !secret ambient_station_app_key
+#  api_key: !secret ambient_station_api_key
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: "home-assistant/window/contact"
+  - platform: mdadm_state
+    device: md0
+
+
+
+
+cover:
+  - platform: template
+    covers:
+      garage_door1:
+        friendly_name: "Garage Door 1"
+        entity_id: binary_sensor.bay1_tilt_access_control_window_door_is_open
+        value_template: "{{ is_state('binary_sensor.bay1_tilt_access_control_window_door_is_open', 'on') }}"
+        device_class: garage
+        open_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel1
+        close_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel1
+        stop_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel1
+      garage_door2:
+        friendly_name: "Garage Door 2"
+        entity_id: binary_sensor.bay2_tilt_access_control_window_door_is_open
+        value_template: "{{ is_state('binary_sensor.bay2_tilt_access_control_window_door_is_open', 'on') }}"
+        device_class: garage
+        open_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel2
+        close_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel2
+        stop_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel2
+      garage_door3:
+        device_class: garage
+        friendly_name: "Garage Door3"
+        entity_id: binary_sensor.bay3_tilt_access_control_window_door_is_open
+        value_template: "{{ is_state('binary_sensor.bay3_tilt_access_control_window_door_is_open', 'on') }}"
+        open_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel3
+        close_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel3
+        stop_cover:
+          service: switch.toggle
+          entity_id: switch.multirelay_channel3
+    
+    
+rainbird:
+  host: 192.168.42.13
+  password: !secret rainbird_pw
+  trigger_time: 360

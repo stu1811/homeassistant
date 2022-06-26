@@ -1,0 +1,24 @@
+# Whitelist files
+!*.yaml
+!.gitignore
+!*.md
+
+# Ignore folders.
+.storage
+.cloud
+.google.token
+nest
+node-red
+repos
+zha_ota
+www/floorplan
+zhacustomquirks
+
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml
+frigate*
+.HA_VERSION
+.sonoff.json

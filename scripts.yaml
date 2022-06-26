@@ -1,0 +1,64 @@
+formal_lights_on:
+  sequence:
+  - service: zwave_js.multicast_set_value
+    data:
+      command_class: '38'
+      property: targetValue
+      value: 99
+    target:
+      device_id:
+      - a5b1db4b20b67bd02a3e53bc86418b2a
+      - f0fa43f0b0ea9817b19d80deda0b9f90
+  mode: single
+  alias: Formal Lights on
+formal_lights_off:
+  sequence:
+  - service: zwave_js.multicast_set_value
+    data:
+      command_class: '38'
+      property: targetValue
+      value: 0
+    target:
+      device_id:
+      - a5b1db4b20b67bd02a3e53bc86418b2a
+      - f0fa43f0b0ea9817b19d80deda0b9f90
+  mode: single
+  alias: Formal Lights Off
+switches_off:
+  sequence:
+  - service: zwave_js.multicast_set_value
+    target:
+      device_id:
+      - 8d201a03d040aae57911d4e8c34fe132
+      - 2734b4143b8128ea6dfa3ba0e18e498a
+      - 96149711067e16f9e460b1bc5512274c
+      - 4a8cc55213c38121392f56e21f2e8865
+      - 88e3891ded4ad6928c75381b28ae3e45
+      - 21882f8f4d468a61f9cd971282fa626f
+      - b5305db31eb132967b9cab829e5d4d1a
+      - 91260aabc7f586a9ce8ad5b7afd8b164
+      - 4d4eab8d73fbf006193f2a86acb904ff
+      - 1b8483bd1babe87e8ac25e9f4cb58c4f
+    data:
+      command_class: '37'
+      property: targetValue
+      value: false
+  mode: single
+  alias: Switches Off
+dimmers_off:
+  alias: Dimmers Off
+  sequence:
+  - service: zwave_js.multicast_set_value
+    data:
+      command_class: '38'
+      property: targetValue
+      value: 0
+    target:
+      device_id:
+      - 26b584f450abdc6ef481264f6b6868b4
+      - 1ce7bfa40a56eb749500865f40471f94
+      - 962371c17c424f30f07dfa889cc9362e
+      - a5b1db4b20b67bd02a3e53bc86418b2a
+      - f0fa43f0b0ea9817b19d80deda0b9f90
+      - f8fcb465f31e147992b95e5ba4603549
+  mode: single

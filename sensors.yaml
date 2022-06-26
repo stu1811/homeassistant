@@ -1,0 +1,99 @@
+sensor:
+  - platform: zoneminder
+    include_archived: true
+    monitored_conditions: hour
+  # Weather climatecell.co
+  - platform: climacell
+    api_key: !secret climacell_api_key
+    name: example
+    latitude: !secret gps_geo_home_lt
+    longitude: !secret gps_geo_home_ln
+    units: metric
+    timelines:
+      - name: "" #Realtime
+        timestep: "1m"
+        forecast_observations: 1
+        fields:
+          - temperatureMax
+          - feels_like
+          - humidity
+          - wind_speed
+          - wind_direction
+          - wind_gust
+          - pressure
+          - precipitationIntensity
+          - precipitation_type
+          - visibility
+          - cloud_cover
+          - weather_condition
+          - pm25
+          - pm10
+          - o3
+          - no2
+          - co
+          - so2
+          - epa_aqi
+          - epa_health_concern
+          - pollen_tree
+          - pollen_weed
+          - pollen_grass
+          - fire_index
+        update: auto
+        scan_interval:
+          # At least one of these must be specified:
+          days: 0
+          hours: 1
+          minutes: 0
+          seconds: 0
+          milliseconds: 0
+        exclude_interval:
+          1:
+            - "00:00"
+            - "07:00"
+      - name: "" #Daily
+        timestep: "1d"
+        forecast_observations: 5
+        fields:
+          - temperature
+          - temperatureMin
+          - temperatureMax
+          - precipitationIntensityMin
+          - precipitationIntensityMax
+          - precipitation_probability
+          - weather_condition
+        scan_interval:
+          # At least one of these must be specified:
+          days: 0
+          hours: 4
+          minutes: 0
+          seconds: 0
+          milliseconds: 0
+        exclude_interval:
+          1:
+            - "23:00"
+            - "06:30"
+  - platform: command_line
+    name: Time Since Last Home Assistant Restart
+    command: 'echo "$(($(date +%s) - $(date --date="`systemctl show home-assistant.service -p ActiveEnterTimestamp --value`" "+%s")))"'
+    unit_of_measurement: 'seconds'
+  - platform: template
+    sensors:
+      home_assistant_not_restarted_recently:
+        value_template: '{% if states(''sensor.time_since_last_home_assistant_restart'') | float > 30 %}true{% else %}false{% endif %}'
+      dryer_time_left:
+        value_template: >-
+          {% set time= as_timestamp(states('sensor.dryer_dryer_completion_time')) - as_timestamp(now()) | int %}
+          {% set sec = (time % 60) | int %}
+          {% set minutes = (time // 60 ) % 60 | int %}
+          {% set hours = (time // 3600) % 24 %}
+          {% if time < 0 %}
+            0
+          {% elif hours > 0 %}
+            {{hours}}:{{minutes}}:{{sec}}
+          {% else %}
+            {{minutes}}:{{sec}}
+          {% endif %}
+            
+            
+            
+            
