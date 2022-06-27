@@ -1,0 +1,318 @@
+- id: '1618453221437'
+  alias: Formal Lights Toggle
+  description: ''
+  use_blueprint:
+    path: stu1811/zwave_js_inovelli_lzw30_sn_red_series_dimmer.yaml
+    input:
+      zwave_device: 96149711067e16f9e460b1bc5512274c
+      config_button:
+      - choose:
+        - conditions:
+          - condition: device
+            type: is_on
+            device_id: a5b1db4b20b67bd02a3e53bc86418b2a
+            entity_id: light.dog_light
+            domain: light
+          sequence:
+          - service: zwave_js.multicast_set_value
+            target:
+              device_id:
+              - a5b1db4b20b67bd02a3e53bc86418b2a
+              - f0fa43f0b0ea9817b19d80deda0b9f90
+            data:
+              command_class: '38'
+              property: targetValue
+              value: 0
+        - conditions:
+          - condition: device
+            type: is_off
+            device_id: a5b1db4b20b67bd02a3e53bc86418b2a
+            entity_id: light.dog_light
+            domain: light
+          sequence:
+          - service: zwave_js.multicast_set_value
+            data:
+              command_class: '38'
+              property: targetValue
+              value: 99
+            target:
+              device_id:
+              - a5b1db4b20b67bd02a3e53bc86418b2a
+              - f0fa43f0b0ea9817b19d80deda0b9f90
+        default:
+        - service: zwave_js.multicast_set_value
+          target:
+            device_id:
+            - f0fa43f0b0ea9817b19d80deda0b9f90
+            - a5b1db4b20b67bd02a3e53bc86418b2a
+          data:
+            command_class: '38'
+            property: targetValue
+            value: 99
+- id: '1618540909358'
+  alias: Formal Goodnight
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: a5b1db4b20b67bd02a3e53bc86418b2a
+    entity_id: light.dog_light
+    domain: light
+  - type: turn_off
+    device_id: f0fa43f0b0ea9817b19d80deda0b9f90
+    entity_id: light.formal_corner
+    domain: light
+  mode: single
+- id: '1618624170416'
+  alias: Formal sunset
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:60:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: a5b1db4b20b67bd02a3e53bc86418b2a
+    entity_id: light.dog_light
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: f0fa43f0b0ea9817b19d80deda0b9f90
+    entity_id: light.formal_corner
+    domain: light
+    brightness_pct: 100
+  mode: single
+- id: '1627203583057'
+  alias: Away lights on
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation
+    state: 'on'
+  action:
+  - type: turn_on
+    device_id: 962371c17c424f30f07dfa889cc9362e
+    entity_id: light.bottom_stairs
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 26b584f450abdc6ef481264f6b6868b4
+    entity_id: light.kitchen_table
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 1ce7bfa40a56eb749500865f40471f94
+    entity_id: light.dining_room
+    domain: light
+    brightness_pct: 100
+  mode: single
+- id: '1627203838635'
+  alias: Away lights out
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation
+    state: 'on'
+  action:
+  - scene: scene.goodnight
+  mode: single
+- id: '1629946970098'
+  alias: Kitchen Secondary
+  description: ''
+  use_blueprint:
+    path: stu1811/zwave_js_inovelli_lzw30_sn_red_series_dimmer.yaml
+    input:
+      zwave_device: 64c5501ed8ec81740573e7535a35c1d5
+      button_a:
+      - type: turn_on
+        device_id: 64c5501ed8ec81740573e7535a35c1d5
+        entity_id: switch.kitchen_secondary
+        domain: switch
+      - type: turn_on
+        device_id: 8d201a03d040aae57911d4e8c34fe132
+        entity_id: switch.kitchen
+        domain: switch
+      button_b:
+      - type: turn_off
+        device_id: 64c5501ed8ec81740573e7535a35c1d5
+        entity_id: switch.kitchen_secondary
+        domain: switch
+      - type: turn_off
+        device_id: 8d201a03d040aae57911d4e8c34fe132
+        entity_id: switch.kitchen
+        domain: switch
+      config_button: []
+- id: '1629947117825'
+  alias: Kitchen primary
+  description: ''
+  use_blueprint:
+    path: stu1811/zwave_js_inovelli_lzw30_sn_red_series_dimmer.yaml
+    input:
+      button_a:
+      - type: turn_on
+        device_id: 8d201a03d040aae57911d4e8c34fe132
+        entity_id: switch.kitchen
+        domain: switch
+      - type: turn_on
+        device_id: 64c5501ed8ec81740573e7535a35c1d5
+        entity_id: switch.kitchen_secondary
+        domain: switch
+      button_b:
+      - type: turn_off
+        device_id: 8d201a03d040aae57911d4e8c34fe132
+        entity_id: switch.kitchen
+        domain: switch
+      - type: turn_off
+        device_id: 64c5501ed8ec81740573e7535a35c1d5
+        entity_id: switch.kitchen_secondary
+        domain: switch
+      zwave_device: 8d201a03d040aae57911d4e8c34fe132
+- id: '1632751736976'
+  alias: Switches off
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: zwave_js.multicast_set_value
+    target:
+      device_id:
+      - 8d201a03d040aae57911d4e8c34fe132
+      - 96149711067e16f9e460b1bc5512274c
+      - 2734b4143b8128ea6dfa3ba0e18e498a
+      - 4d4eab8d73fbf006193f2a86acb904ff
+      - 21882f8f4d468a61f9cd971282fa626f
+      - 4a8cc55213c38121392f56e21f2e8865
+      - b5305db31eb132967b9cab829e5d4d1a
+      - 88e3891ded4ad6928c75381b28ae3e45
+    data:
+      command_class: '37'
+      property: targetValue
+      value: false
+  mode: single
+- id: '1632751917722'
+  alias: Dimmers Off
+  description: ''
+  trigger: []
+  condition: []
+  action:
+  - service: zwave_js.multicast_set_value
+    data:
+      command_class: '38'
+      property: targetValue
+      value: 0
+    target:
+      device_id:
+      - 1ce7bfa40a56eb749500865f40471f94
+      - 962371c17c424f30f07dfa889cc9362e
+      - 26b584f450abdc6ef481264f6b6868b4
+  mode: single
+- id: '1633832098779'
+  alias: Set Irrigation Delay
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.rain_delay_days
+  condition: []
+  action:
+  - service: rainbird.set_rain_delay
+    data:
+      duration: '{{ states(''input_number.rain_delay_days'')|int }}'
+  mode: single
+- id: '1633833475541'
+  alias: Set Rain Delay to Sensor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.raindelay
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.rain_delay_days
+    data:
+      value: '{{ states(''sensor.raindelay'')|int }}'
+  mode: single
+- id: '1636040774015'
+  alias: Zen34 up
+  description: ''
+  trigger:
+  - platform: device
+    device_id: b760d47039bdc845ceee5802a30cfb90
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '001'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 001
+  condition: []
+  action:
+  - device_id: a5b1db4b20b67bd02a3e53bc86418b2a
+    domain: light
+    entity_id: light.dog_light
+    type: brightness_increase
+  - device_id: f0fa43f0b0ea9817b19d80deda0b9f90
+    domain: light
+    entity_id: light.formal_corner
+    type: brightness_increase
+  mode: single
+- id: '1636041285570'
+  alias: Zen34 down
+  description: ''
+  trigger:
+  - platform: device
+    device_id: b760d47039bdc845ceee5802a30cfb90
+    domain: zwave_js
+    type: event.value_notification.central_scene
+    property: scene
+    property_key: '002'
+    endpoint: 0
+    command_class: 91
+    subtype: Endpoint 0 Scene 002
+  condition: []
+  action:
+  - device_id: f0fa43f0b0ea9817b19d80deda0b9f90
+    domain: light
+    entity_id: light.formal_corner
+    type: brightness_decrease
+  - device_id: a5b1db4b20b67bd02a3e53bc86418b2a
+    domain: light
+    entity_id: light.dog_light
+    type: brightness_decrease
+  mode: single
+- id: '1649374884799'
+  alias: Yard_Waste_Auto
+  description: ''
+  use_blueprint:
+    path: bruxy70/import_txt.yaml
+    input:
+      import: sensor.yard_waste_pickup
+      garbage_collection_entity: sensor.yard_waste
+- id: '1654079082633'
+  alias: Move Garage On Holiday Week
+  description: ''
+  use_blueprint:
+    path: bruxy70/multiple_holidays_in_week.yaml
+    input:
+      garbage_collection_entity: sensor.garbage
+      holiday_entity: calendar.ri_holidays
+- id: '1654082517833'
+  alias: Move Recycling on Hliday
+  description: ''
+  use_blueprint:
+    path: bruxy70/multiple_holidays_in_week.yaml
+    input:
+      garbage_collection_entity: sensor.recycling
+      holiday_entity: calendar.ri_holidays
