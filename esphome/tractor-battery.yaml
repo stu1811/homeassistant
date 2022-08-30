@@ -1,0 +1,133 @@
+substitutions:
+  devicename: papa-deere-battery
+  friendly_devicename: Papa Deere Battery
+  
+
+
+
+esphome:
+  name: $devicename
+
+esp8266:
+  board: d1_mini
+
+logger:
+  level: DEBUG
+  logs:
+    dht: DEBUG
+
+# default HA integration, OTA updater and backup http web portal
+#api:
+#  password: !secret ota_password
+ota:
+  password: !secret ota_password
+  on_begin:
+    then:
+      - logger.log: "OTA start"
+  on_progress:
+    then:
+      - logger.log:
+          format: "OTA progress %0.1f%%"
+          args: ["x"]
+  on_end:
+    then:
+      - logger.log: "OTA end"
+
+globals:
+ - id: R1
+   type: float
+   restore_value: no
+   initial_value: '26.78'
+ - id: R2
+   type: float
+   restore_value: no
+   initial_value: '6.77'
+
+wifi:
+
+  # Read the wifi/pass from secrets.yaml:
+  # wifi_ssid: "My Wifi XX"
+  # wifi_password: "XXXXXXX"
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "rack-fan-ap"
+    password: ""
+
+
+captive_portal:
+
+sensor:
+  - platform: wifi_signal
+    name: $friendly_devicename signal strength
+
+
+  - platform: adc
+    pin: A0
+    id: "VCC"
+    #accuracy_decimals: 3
+    filters:
+      - multiply: 3.3
+      - calibrate_polynomial:
+          degree: 2
+          datapoints:
+          # Map 0.0 (from sensor) to 0.0 (true value)
+          - 0.69609 -> 0.683
+          - 1.03770 -> 1.015
+          - 2.59746 -> 2.420
+    
+  - platform: template
+    name: "esp.2.battery_level"
+    unit_of_measurement: 'V'
+    update_interval: 5s
+    lambda: |-
+      return ((id(VCC).state * (id(R1)+id(R2)) )/id(R2) );
+      
+  - platform: template
+    name: "esp.2.battery_A0"
+    unit_of_measurement: 'V'
+    update_interval: 5s
+    lambda: |-
+      return ((id(VCC).state) );
+
+# Vin = ( Vout x (R1 + R2) ) / R2
+#return ((id(VCC).state /3.30) * 100.00);
+    
+    
+  - platform: mqtt_subscribe
+    name: "Sleep time topic"
+    id: custom_sleep_time
+    unit_of_measurement: ms
+    accuracy_decimals: 0
+    topic: esp/sleep_mode_time
+    on_value:
+      then:
+       - lambda: |-
+          id(deep_sleep_1).set_sleep_duration(id(custom_sleep_time).state);
+
+switch:
+  - platform: restart
+    id: reboot_esp
+    name: $friendly_devicename restart switch
+
+mqtt:
+  broker: 192.168.42.200
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  discovery_prefix: homeassistant
+  birth_message:
+  will_message:
+  on_message:
+    - topic: esp/ota_mode
+      payload: 'ON'
+      then:
+        - deep_sleep.prevent: deep_sleep_1
+
+
+deep_sleep:
+  id: deep_sleep_1
+  sleep_duration: 10s
+  run_duration: 100s
