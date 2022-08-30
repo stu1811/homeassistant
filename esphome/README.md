@@ -47,3 +47,9 @@ wifi_ssid: "WIFI_NAME"
 wifi_password: "WIFI_PASSWORD"
 ota_password: "OTA_PASSWORD"
 ```
+
+### Data and Testing
+Input Speed	Freq at o-scope (Hz)	Reported Speed (RPM)	Counter from ESP LOGS Pulse/min	Count/2			Calculated Speed (1700*input speed)
+33.00%	23	694	1388	694			690
+66.00%	41	1233	2466	1233			1,230
+100.00%	56.5	1700	3400	1700			1,695
